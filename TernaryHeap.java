@@ -18,13 +18,20 @@ public class TernaryHeap<K> extends Heap<K> {
     private K root(){
         return array.get(0);
     }
-    private int left(int i){
+    private K removeRoot() {
+        K toReturn = root();
+        swap(0, array.size() - 1);
+        array.remove(array.size() - 1);
+        sink(0);
+        return toReturn;
+    }
+    private int left(int i) {
         return 3*i + 1;
     }
-    private int middle(int i){
+    private int middle(int i) {
         return 3*i + 2;
     }
-    private int right(int i){
+    private int right(int i) {
         return 3*i + 3;
     }
     private boolean hasLeft(int i) {
@@ -36,10 +43,10 @@ public class TernaryHeap<K> extends Heap<K> {
     private boolean hasRight(int i) {
         return right(i) < array.size();
     }
-    private int parent(int i){
+    private int parent(int i) {
         return (i - 1) / 3;
     }
-    private void sink(int i){
+    private void sink(int i) {
         // System.out.println();
         // System.out.println(array);
         // System.out.print("SINK: ");
@@ -63,7 +70,7 @@ public class TernaryHeap<K> extends Heap<K> {
             i = smallChildIndex;
         }
     }
-    private void swim(int i){
+    private void swim(int i) {
         while (i > 0) {
             int p = parent(i);
             if (comp.compare(array.get(i), array.get(p)) < 0) {
@@ -74,22 +81,16 @@ public class TernaryHeap<K> extends Heap<K> {
             }
         }
     }
-    public void insert(K k){
+    public void insert(K k) {
         array.add(k);
         // System.out.print("Inserting: ");
         // System.out.println(k);
         swim(array.size()-1);
     }
-    public K removeMin(){
-        K toReturn = min();
-        swap(0, array.size() - 1);
-        array.remove(array.size() - 1);
-        sink(0);
-        // System.out.print("Removing: ");
-        // System.out.println(toReturn);
-        return toReturn;
+    public K removeMin() {
+        return removeRoot();
     }
-    public K min(){
+    public K min() {
         return root();
     }
 
