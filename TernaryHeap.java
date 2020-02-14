@@ -15,10 +15,10 @@ public class TernaryHeap<K> extends Heap<K> {
         array.set(i, array.get(j));
         array.set(j, temp);
     }
-    private K root(){
+    public K root(){
         return array.get(0);
     }
-    private K removeRoot() {
+    public K removeRoot() {
         K toReturn = root();
         swap(0, array.size() - 1);
         array.remove(array.size() - 1);

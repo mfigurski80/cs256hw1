@@ -21,10 +21,10 @@ public class BinaryHeap<K> extends Heap<K> {
         array.set(j, temp);
         // System.out.println(array.toString());
     }
-    private K root() {
+    public K root() {
         return array.get(0);
     }
-    private K removeRoot() {
+    public K removeRoot() {
         K toReturn = root();
         swap(0, array.size() - 1);
         array.remove(array.size() - 1);
