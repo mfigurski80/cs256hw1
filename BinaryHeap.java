@@ -85,7 +85,7 @@ public class BinaryHeap<K> extends Heap<K> {
     }
     /**
      * Pushes the node at given index down the tree, until it gets to a
-     * position where its children have less priority.
+     * position where its children have less priority than it
      * @param i index of node to push down
      */
     private void sink(int i) {
@@ -105,7 +105,7 @@ public class BinaryHeap<K> extends Heap<K> {
     }
     /**
      * Pulls the node at the given index up the tree, until it gets to a
-     * position where its parent has more priority.
+     * position where its parent has more priority than it
      * @param i index of node to pull up
      */
     private void swim(int i) {
@@ -120,7 +120,7 @@ public class BinaryHeap<K> extends Heap<K> {
         }
     }
     /**
-     * Adds a given node to the tree, and pulls it up to it's proper place
+     * Adds a given node to the tree, and pulls it up to it's proper position
      * @param k node to add
      */
     public void insert(K k) {
@@ -145,7 +145,7 @@ public class BinaryHeap<K> extends Heap<K> {
     }
 
     /**
-     * Creates a string representation of the Binary Heap's current state.
+     * Creates a string representation of the BinaryHeap's current state
      * @return String representation
      */
     public String toString() {
@@ -160,19 +160,18 @@ public class BinaryHeap<K> extends Heap<K> {
     }
 
     /**
-     * Testing script...
-     * @param args Command line arguments. Will be sorted into BinaryHeap
+     * Testing script... inserts command line arguments as strings and prints
+     * them in sorted order
+     * @param args Command line arguments
      */
     public static void main(String[] args) {
         BinaryHeap<String> a = new BinaryHeap<String>();
-        for (String cur : args) {
+        for (String cur : args)
             a.insert(cur);
-        }
         System.out.println(a.toString());
 
         int size = a.size();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             System.out.println(a.removeMin());
-        }
     }
 }

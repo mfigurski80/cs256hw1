@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-public class MedianHeap<K extends Comparable<K>> { // TODO: maybe not Comparable<K>
+public class MedianHeap<K extends Comparable<K>> {
 
     protected BinaryHeap<K> smallHeap = new BinaryHeap<K>(new MaxComparator<K>());
     protected BinaryHeap<K> largeHeap = new BinaryHeap<K>();
@@ -28,8 +28,8 @@ public class MedianHeap<K extends Comparable<K>> { // TODO: maybe not Comparable
     public void insert(K k) {
         smallHeap.insert(k);
         while(smallHeap.size() > largeHeap.size() + 1) {
-            System.out.print("Rebalancing: ");
-            System.out.println(k);
+            // System.out.print("Rebalancing: ");
+            // System.out.println(k);
             largeHeap.insert(smallHeap.removeRoot());
         }
         if (largeHeap.size() <= 0) return;
@@ -68,31 +68,16 @@ public class MedianHeap<K extends Comparable<K>> { // TODO: maybe not Comparable
 
     /**
      * Testing script...
-     * @param args Console arguments. These don't change program's execution
+     * @param args Console arguments. Will be inserted into MedianHeap
      */
     public static void main(String[] args) {
-        MedianHeap<Integer> a = new MedianHeap<Integer>();
-        a.insert(1);
-        System.out.println(a.toString());
-        a.insert(2);
-        System.out.println(a.toString());
-        a.insert(3);
-        System.out.println(a.toString());
-        a.insert(4);
-        System.out.println(a.toString());
-        a.insert(5);
-        System.out.println(a.toString());
-        a.insert(6);
-        System.out.println(a.toString());
-        a.insert(7);
+        MedianHeap<String> a = new MedianHeap<String>();
+        for (String cur : args)
+            a.insert(cur);
         System.out.println(a.toString());
 
-        System.out.print("MEDIAN: ");
-        System.out.println(a.median());
-
-        a.removeMedian();
-        System.out.println(a.toString());
-        a.removeMedian();
-        System.out.println(a.toString());
+        int size = a.size();
+        for (int i = 0; i < size; i++)
+            System.out.println(a.removeMedian());
     }
 }
